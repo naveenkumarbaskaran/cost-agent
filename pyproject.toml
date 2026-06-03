@@ -1,0 +1,64 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cost-agent-ai"
+version = "0.1.0"
+description = "Cloud cost optimisation agent — analyses AWS/GCP spend and identifies waste using Claude AI"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+    { name = "cost-agent contributors" },
+]
+keywords = ["aws", "gcp", "cloud", "cost", "optimisation", "anthropic", "claude", "ai"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: System :: Systems Administration",
+]
+dependencies = [
+    "anthropic>=0.40.0",
+    "click>=8.1",
+    "rich>=13.0",
+    "pandas>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov",
+    "ruff",
+    "mypy",
+    "pandas-stubs",
+]
+
+[project.scripts]
+cost-agent = "cost_agent.cli:main"
+
+[project.urls]
+Repository = "https://github.com/your-org/cost-agent-ai"
+Issues = "https://github.com/your-org/cost-agent-ai/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["cost_agent"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+ignore_missing_imports = true
